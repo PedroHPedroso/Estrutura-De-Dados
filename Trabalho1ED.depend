@@ -1,0 +1,14 @@
+# depslib dependency file v1.0
+1720302957 source:c:\users\pedro_7jq041s\onedrive\Área de trabalho\faculdade\c\trabalho1ed\trabalho1.c
+	<stdio.h>
+	"estoque.h"
+
+1719277784 c:\users\pedro_7jq041s\onedrive\Área de trabalho\faculdade\c\trabalho1ed\estoque.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1720302957 source:c:\users\pedro_7jq041s\onedrive\Área de trabalho\faculdade\c\trabalho1ed\estoque.c
+	<stdio.h>
+	"estoque.h"
+

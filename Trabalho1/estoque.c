@@ -194,6 +194,3 @@ void Amnesia(Lista *l) {
     }
     printf("FOI LIMPO\n");
 }
-
-
-int i;

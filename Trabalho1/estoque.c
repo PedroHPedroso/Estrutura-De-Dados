@@ -8,11 +8,11 @@ Lista *cria_lista(void) {
 }
 //------------------------------------------------------------------------------------------------//
 Medicamento *CriaMedicamento(char *nome, int codigo, float valor, int *data_de_validade) {
-    // Criação dos medicamentos através do ponteiro novo(struct medicamento), onde deve apontar para os valores a serem atribuídos
+    // Criaï¿½ï¿½o dos medicamentos atravï¿½s do ponteiro novo(struct medicamento), onde deve apontar para os valores a serem atribuï¿½dos
     Medicamento *novo = (Medicamento *)malloc(sizeof(Medicamento));
     // Copiando o nome do medicamento para o campo nome da struct medicamento
     strcpy(novo->nome, nome);
-    // Atribuindo os valores para os campos código e valor
+    // Atribuindo os valores para os campos cï¿½digo e valor
     novo->codigo = codigo;
     novo->valor = valor;
     // Passando as datas no sentido DD/MM/AA
@@ -25,11 +25,11 @@ Medicamento *CriaMedicamento(char *nome, int codigo, float valor, int *data_de_v
 }
 //--------------------------------------------------------------//
 Lista *InsereListaMedicamento(FILE *fp, Lista *l, Medicamento *n) {
-    // Criação de um ponteiro para a struct lista para fazer a atribuição na lista
+    // Criaï¿½ï¿½o de um ponteiro para a struct lista para fazer a atribuiï¿½ï¿½o na lista
     Lista *lst = (Lista *)malloc(sizeof(Lista));
-    // Ponteiro lista apontando para a variável do tipo medicamento dentro da struct lista e atribuindo a lista recebida como parâmetro
+    // Ponteiro lista apontando para a variï¿½vel do tipo medicamento dentro da struct lista e atribuindo a lista recebida como parï¿½metro
     lst->m = n;
-    // Setando o próximo elemento a ser preenchido
+    // Setando o prï¿½ximo elemento a ser preenchido
     lst->prox = l;
     fprintf(fp, "MEDICAMENTO %s  %d ADICIONADO.\n", n->nome, n->codigo);
 
@@ -38,34 +38,34 @@ Lista *InsereListaMedicamento(FILE *fp, Lista *l, Medicamento *n) {
 }
 //------------------------------------------------------------------//
 Lista *RetiraListaMedicamento(FILE *fp, Lista *l, int id_medicamento) {
-    // Variável para armazenar o ponteiro anterior na lista
+    // Variï¿½vel para armazenar o ponteiro anterior na lista
     Lista *ant = NULL;
-    // Variável para percorrer a lista
+    // Variï¿½vel para percorrer a lista
     Lista *p = l;
 
     fprintf(fp, "\n");
-    // Percorrendo a lista até encontrar o medicamento com o código especificado
+    // Percorrendo a lista atï¿½ encontrar o medicamento com o cï¿½digo especificado
     while (p != NULL && p->m->codigo != id_medicamento) {
         ant = p;
         p = p->prox;
     }
 
-    // Se não encontrou o medicamento
+    // Se nï¿½o encontrou o medicamento
     if (p == NULL) {
         fprintf(fp, "CODIGO DO MEDICAMENTO INVALIDO OU NAO ENCONTRADO\n");
         return l;
     }
 
-    // Se o medicamento a ser removido é o primeiro da lista
+    // Se o medicamento a ser removido ï¿½ o primeiro da lista
     if (ant == NULL) {
         l = p->prox;
     } else {
-        // Se o medicamento a ser removido não é o primeiro
+        // Se o medicamento a ser removido nï¿½o ï¿½ o primeiro
         ant->prox = p->prox;
     }
 
     fprintf(fp, "MEDICAMENTO %s REMOVIDO\n", p->m->nome);
-    // Liberando a memória do medicamento e do nó da lista
+    // Liberando a memï¿½ria do medicamento e do nï¿½ da lista
     free(p->m);
     free(p);
     return l;
@@ -90,7 +90,7 @@ int VerificaListaMedicamento(FILE *fp, Lista *p, int id_medicamento) {
 
     fprintf(fp, "\n");
 
-    // Percorrendo a lista para verificar se o medicamento está presente
+    // Percorrendo a lista para verificar se o medicamento estï¿½ presente
     while (aux != NULL) {
         if (aux->m->codigo == id_medicamento) {
             fprintf(fp, "MEDICAMENTO %s ENCONTRADO.\n", aux->m->nome);
@@ -99,7 +99,7 @@ int VerificaListaMedicamento(FILE *fp, Lista *p, int id_medicamento) {
         aux = aux->prox;
     }
     fprintf(fp, "MEDICAMENTO DO CODIGO %d NAO ENCONTRADO.\n", id_medicamento);
-    return 0;  // Medicamento não encontrado
+    return 0;  // Medicamento nï¿½o encontrado
 }
 //---------------------------------------------------------//
 int VerificaListaValidade(FILE *fp, Lista *p, int *dataDeValidade) {
@@ -185,7 +185,7 @@ Lista *OrdenaListaVencimento(Lista *p) {
 //--------------------------------------//
 void Amnesia(Lista *l) {
     Lista *p = l;
-    // Percorrendo a lista e liberando a memória de cada nó
+    // Percorrendo a lista e liberando a memï¿½ria de cada nï¿½
     while (p != NULL) {
         Lista *t = p->prox;
         free(p->m);
@@ -194,3 +194,6 @@ void Amnesia(Lista *l) {
     }
     printf("FOI LIMPO\n");
 }
+
+
+int i;

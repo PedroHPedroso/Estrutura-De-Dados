@@ -1,77 +1,89 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include "estoque.h"
 
-int main()
-{
+int main() {
     FILE *arq;
     FILE *arqExit;
 
-    arq = fopen("entrada.txt","r");
+    // Abrindo o arquivo de entrada "entrada.txt" para leitura
+    arq = fopen("entrada.txt", "r");
+    if (arq == NULL) {
+        printf("Erro\n");
+        return 1;
+    }
 
-        if(arq == NULL){
-            printf("Erro\n");
-        }
+    // Abrindo o arquivo de saída "saida.txt" para escrita
+    arqExit = fopen("saida.txt", "w");
 
-    arqExit = fopen("saida.txt","w");
-
-    //Instanciacao da struct lista
+    // Instanciação da struct lista
     Lista *med;
-    //criacao da lista como nula(nao ha nada dentro dela)
+    // Criação da lista como nula (não há nada dentro dela inicialmente)
     med = cria_lista();
 
-    //criacao para escolha da funcao e atribuicao dos valores dos medicamentos
+    // Variáveis para a escolha da função e atribuição dos valores dos medicamentos
     char funcao[50];
     char name[20];
     int code;
     float value;
     int date[3];
 
-    while(fscanf(arq, "%50s", funcao) != EOF){
-        if(strcmp(funcao, "MEDICAMENTO")){
-            //leitor do arquivo de entrada
-            fscanf(arq,"%s %d %f %d %d %d", name, &code, &value, &date[0], &date[1], &date[2]);
-            //criacao dos medicamentos passando para a funcao
-            Medicamento* newMedicament = CriaMedicamento(name,code,value,date);
-            //insere os valores na lista, com a funcao InsereListaMedicamento
-            med = InsereListaMedicamento(arqExit,med,newMedicament);
+    // Loop para ler o arquivo de entrada até o final
+    while (fscanf(arq, "%s", funcao) != EOF) {
+        // Se a função lida for "MEDICAMENTO"
+        if (strcmp(funcao, "MEDICAMENTO") == 0) {
+            // Leitura dos valores do medicamento do arquivo de entrada
+            fscanf(arq, "%s %d %f %d %d %d", name, &code, &value, &date[0], &date[1], &date[2]);
+            // Criação de um novo medicamento passando os valores lidos para a função
+            Medicamento* newMedicament = CriaMedicamento(name, code, value, date);
+            // Inserção dos valores na lista com a função InsereListaMedicamento
+            med = InsereListaMedicamento(arqExit, med, newMedicament);
         }
-
-        else if(strcmp(funcao,"RETIRA")){
-            fscanf(arq,"%d",&code);
-            med = RetiraListaMedicamento(arqExit,med,code);
+        // Se a função lida for "RETIRA"
+        else if (strcmp(funcao, "RETIRA") == 0) {
+            // Leitura do código do medicamento a ser retirado
+            fscanf(arq, "%d", &code);
+            // Retirada do medicamento da lista
+            med = RetiraListaMedicamento(arqExit, med, code);
         }
-
-        else if(strcmp(funcao,"IMPRIME_LISTA")){
-            ImprimeListaMedicamentos(arqExit,med);
+        // Se a função lida for "IMPRIME_LISTA"
+        else if (strcmp(funcao, "IMPRIME_LISTA") == 0) {
+            // Impressão da lista de medicamentos
+            ImprimeListaMedicamentos(arqExit, med);
         }
-
-        else if(strcmp(funcao,"ATUALIZA_PRECO")){
-            fscanf(arq,"%d %f", &code,&value);
+        // Se a função lida for "VERIFICA_VALIDADE"
+        else if (strcmp(funcao, "VERIFICA_VALIDADE") == 0) {
+            // Leitura da data para verificação de validade
+            fscanf(arq, "%d %d %d", &date[0], &date[1], &date[2]);
+            // Verificação da validade dos medicamentos na lista
+            VerificaListaValidade(arqExit, med, date);
         }
-
-        else if(strcmp(funcao,"VERIFICA_VALIDADE")){
-            fscanf(arq,"%d %d %d", &date[0], &date[1], &date[2]);
-            med = VerificaListaValidade(arqExit,med,date);
+        // Se a função lida for "VERIFICA_LISTA"
+        else if (strcmp(funcao, "VERIFICA_LISTA") == 0) {
+            // Leitura do código do medicamento a ser verificado
+            fscanf(arq, "%d", &code);
+            // Verificação da presença do medicamento na lista
+            VerificaListaMedicamento(arqExit, med, code);
         }
-
-        else if(strcmp(funcao,"VERIFICA_LISTA")){
-            fscanf(arqExit,"%d",&code);
-            VerificaListaMedicamento(arqExit,med,code);
-        }
-
-        else if(strcmp(funcao,"ORDENA_LISTA_VALIDADE")){
+        // Se a função lida for "ORDENA_LISTA_VALIDADE"
+        else if (strcmp(funcao, "ORDENA_LISTA_VALIDADE") == 0) {
+            // Ordenação da lista de medicamentos por data de validade
             med = OrdenaListaVencimento(med);
         }
-
-        else if(strcmp(funcao,"ORDENA_LISTA_VALOR") ){
+        // Se a função lida for "ORDENA_LISTA_VALOR"
+        else if (strcmp(funcao, "ORDENA_LISTA_VALOR") == 0) {
+            // Ordenação da lista de medicamentos por valor
             med = OrdenaListaValor(med);
         }
-
-        else if(strcmp(arq,"FIM")){
-            break;
-        }
     }
+
+    // Liberação da memória alocada para a lista
+    Amnesia(med);
+
+    // Fechando os arquivos de entrada e saída
     fclose(arq);
     fclose(arqExit);
+
     return 0;
 }

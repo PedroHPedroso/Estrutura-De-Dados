@@ -1,9 +1,6 @@
 #ifndef ESTOQUE_H_INCLUDED
 #define ESTOQUE_H_INCLUDED
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 //define a struct medicamento
 typedef struct medicamento Medicamento;
 
@@ -41,5 +38,7 @@ void ImprimeListaMedicamentos(FILE *fp, Lista *p);
 Lista *OrdenaListaValor(Lista *p);
 //Ordena a lista por data de vencimento
 Lista *OrdenaListaVencimento(Lista *p);
+//Funcao para liberar o espaco alocado
+void Amnesia(Lista *l);
 
 #endif // ESTOQUE_H_INCLUDED

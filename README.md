@@ -46,5 +46,6 @@ Fazer a implementação do mesmo tema do trabalho 1, no caso de um registrador d
 * VERIFICA_ARVORE "CODIGO"
 
 Como descrito no trabalho 1, essas são as funções a serem utilizadas no arquivo de entrada (**entrada.txt**) para fazer o manuseio dos medicamentos no sistema criado
-
   
+## Trabalho 3
+EM ESPERA...

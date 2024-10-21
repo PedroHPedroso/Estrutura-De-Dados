@@ -1,0 +1,9 @@
+Boletim de Urna - Primeiro Turno
+--------------------------------
+Total de eleitores: 12
+Votos validos: 11 (91.67%)
+Votos brancos: 1 (8.33%)
+Votos nulos: 0 (0.00%)
+Windows com Vice Linux: 1 votos (8.33% do total)
+Ricardo Bote com Vice Paulinho Remo: 5 votos (41.67% do total)
+Eneias com Vice Bomba Atomica: 5 votos (41.67% do total)

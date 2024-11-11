@@ -8,7 +8,7 @@ Lista *cria_lista(void) {
 }
 //------------------------------------------------------------------------------------------------//
 Medicamento *CriaMedicamento(char *nome, int codigo, float valor, int *data_de_validade) {
-    // Cria��o dos medicamentos atrav�s do ponteiro novo(struct medicamento), onde deve apontar para os valores a serem atribu�dos
+    // Criacao dos medicamentos atrav�s do ponteiro novo(struct medicamento), onde deve apontar para os valores a serem atribu�dos
     Medicamento *novo = (Medicamento *)malloc(sizeof(Medicamento));
     // Copiando o nome do medicamento para o campo nome da struct medicamento
     strcpy(novo->nome, nome);
